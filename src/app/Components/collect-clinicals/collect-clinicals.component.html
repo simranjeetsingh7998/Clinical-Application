@@ -1,0 +1,56 @@
+<div class="container mt-5 text-center" *ngIf="!submitted">
+    <h1 class="text-success">Patient Details</h1>
+    First Name : {{patient.firstName}} <br>
+    Last Name : {{patient.lastName}} <br>
+    Age : {{patient.age}}
+    <hr>
+    <h3 class="text-success">Add Clinical Data</h3>
+    <form [formGroup]="clinicalDataForm" class="form" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label for="componentName">Component Name</label>
+            <select name="componentName" id="componentName" class="form-control" formControlName="componentName">
+                <option value="bp">Blood Pressure(Sys/Dys)</option>
+                <option value="hw">Height/Weight</option>
+                <option value="heartrate">Heart Rate</option>
+            </select>
+            <p *ngIf="clinicalDataForm.controls.componentName.pristine" class="alert alert-success">
+                Select Component
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="componentValue">Component Value</label>
+            <input type="text" class="form-control" formControlName="componentValue">
+            <p *ngIf="clinicalDataForm.controls.componentValue.pristine" class="alert alert-danger">
+                Value is required!
+            </p>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Confirm</button>
+        <button class="btn btn-primary btn-block" (click)="handleClick()">Home</button>
+    </form>
+</div>
+<div class="container mt-5 text-lg" *ngIf="submitted">
+    <h1 class="text-center text-success text-lg text-center">DATA ADDED SUCCESSFULLY</h1>
+    <table class="table table-hover">
+        <tr>
+            <th>Patient Id</th>
+            <td>{{patient.id}}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{patient.firstName}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{patient.lastName}}</td>
+        </tr>
+        <tr>
+            <th>Component Name</th>
+            <td>{{clinicalData.componentName}}</td>
+        </tr>
+        <tr>
+            <th>Component Value</th>
+            <td>{{clinicalData.componentValue}}</td>
+        </tr>
+    </table>
+    <button class="btn btn-success btn-block" (click)="handleClick()">Home</button>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-5"  *ngIf="!submitted">
+    <h1 class="text text-primary">Register Patient</h1>
+    <form [formGroup]="addPatientForm" class="form" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" formControlName="firstName">
+            <p *ngIf="addPatientForm.controls.firstName.pristine" class="alert alert-danger">
+                First Name is required!
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+            <p *ngIf="addPatientForm.controls.lastName.pristine" class="alert alert-danger">
+                Last Name is required!
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" formControlName="age">
+            <p *ngIf="addPatientForm.controls.age.pristine" class="alert alert-danger">
+                Age is required!
+            </p>
+        </div>
+        <button type="submit" class="btn btn-success">Confirm</button>
+    </form>  
+</div>
+<div class="container mt-5 text-center" *ngIf="submitted">
+    <h1 class="text-success text-lg">REGISTRATION SUCCESSFUL</h1>
+    <button class="btn btn-success btn-block" (click)="handleClick()">Home</button>
+</div>
